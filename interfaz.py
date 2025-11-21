@@ -7,17 +7,42 @@ class BibliotecaApp:
     def __init__(self, root):
         self.biblioteca = Biblioteca()
         self.root = root
-        self.root.title("📚 Biblioteca - Sistema de Gestión")
-        self.root.geometry("800x900")
+        self.root.title("馃摎 Biblioteca - Sistema de Gesti贸n")
+        self.root.geometry("600x700")
         self.root.config(bg= "#C84444")
 
         # ==========================================================
-        # Título principal
+        # ESTILOS MODERNOS
+        # ==========================================================
+        style = ttk.Style()
+        style.theme_use("clam")
+
+
+        style.configure(
+            "Modern.TButton",
+            font=("Arial", 12, "bold"),
+            padding=10,
+            foreground="#FFFFFF",
+            background="#5A1E1E",
+            borderwidth=0,
+            focusthickness=3,
+            focuscolor="none",
+        )
+        style.map(
+        "Modern.TButton",
+        background=[("active", "#7A2A2A")]
+        )
+        style.configure("Modern.TLabelframe", background="#F8D9D9")
+        style.configure("Modern.TLabelframe.Label", font=("Arial", 12, "bold"), background="#F8D9D9")
+        style.configure("Modern.TLabel", background="#F8D9D9", font=("Arial", 11))
+
+        # ==========================================================
+        # T铆tulo principal
         # ==========================================================
         tk.Label(root, text="Sistema de Biblioteca", font=("Arial", 30, "bold")).pack(pady=10)
 
         # ==========================================================FS
-        # Sección: Registro de usuarios
+        # Secci贸n: Registro de usuarios
         # ==========================================================
         frame_usuario = tk.LabelFrame(root, text="Registro de usuario", padx=10, pady=10)
         frame_usuario.pack(fill="x", padx=10, pady=5)
@@ -30,21 +55,22 @@ class BibliotecaApp:
         self.id_usuario = tk.Entry(frame_usuario, width=10)
         self.id_usuario.grid(row=0, column=3, padx=5)
 
-        tk.Button(frame_usuario, text="Registrar", command=self.registrar_usuario).grid(row=0, column=5, padx=5)
+        ttk.Button(frame_usuario, text="Registrar", style="Modern.TButton", command=self.registrar_usuario).grid(row=0, column=5, padx=5)
+
 
         tk.Label(frame_usuario, text="Usuario activo:",bg= "#f7d3d3").grid(row=1, column=0, pady=10)
         self.combo_usuarios = ttk.Combobox(frame_usuario, state="readonly", width=20)
         self.combo_usuarios.grid(row=1, column=1, columnspan=3, pady=10, sticky="w")
         
-        tk.Button(frame_usuario, text="prestados", command=self.Actualizar_prestados_usuario).grid(row=3, column=1, padx=5)
+        ttk.Button(frame_usuario, text="Ver prestados", style="Modern.TButton", command=self.Actualizar_prestados_usuario).grid(row=3, column=1, padx=5)
 
         # ==========================================================
-        # Sección: Agregar libros
+        # Secci贸n: Agregar libros
         # ==========================================================
         frame_libro = tk.LabelFrame(root, text="Agregar libro", padx=10, pady=10)
         frame_libro.pack(fill="x", padx=10, pady=5)
 
-        tk.Label(frame_libro, text="Título:",bg= "#f7d3d3").grid(row=0, column=0)
+        tk.Label(frame_libro, text="T铆tulo:",bg= "#f7d3d3").grid(row=0, column=0)
         self.titulo_entry = tk.Entry(frame_libro, width=30)
         self.titulo_entry.grid(row=0, column=1, padx=5)
 
@@ -52,10 +78,11 @@ class BibliotecaApp:
         self.autor_entry = tk.Entry(frame_libro, width=30)
         self.autor_entry.grid(row=1, column=1, padx=5)
 
-        tk.Button(frame_libro, text="Agregar", command=self.agregar_libro).grid(row=2, column=0, columnspan=2, pady=5)
+        ttk.Button(frame_libro, text="Agregar", style="Modern.TButton", command=self.agregar_libro).grid(row=2, column=0, columnspan=2, pady=5)
+
 
         # ==========================================================
-        # Sección: Lista de libros
+        # Secci贸n: Lista de libros
         # ==========================================================
         frame_lista = tk.LabelFrame(root, text="Libros disponibles", padx=10, pady=10)
         frame_lista.pack(fill="both", expand=True, padx=10, pady=5)
@@ -64,7 +91,7 @@ class BibliotecaApp:
         self.lista_libros.pack(fill="both", expand=True)
 
         # ==========================================================
-        # Sección: Lista de libros prestados
+        # Secci贸n: Lista de libros prestados
         # ==========================================================
         frame_prestados = tk.LabelFrame(root, text="Libros prestados por el usuario seleccionado", padx=10, pady=10)
         frame_prestados.pack(fill="both", expand=True, padx=10, pady=5)
@@ -73,14 +100,14 @@ class BibliotecaApp:
         self.lista_prestados.pack(fill="both", expand=True)
 
         # ==========================================================
-        # Botones de acción
+        # Botones de acci贸n
         # ==========================================================
         frame_botones = tk.Frame(root)
         frame_botones.pack(pady=10)
 
-        tk.Button(frame_botones, text="Prestar libro", width=15, command=self.prestar_libro).grid(row=0, column=0, padx=5)
-        tk.Button(frame_botones, text="Devolver libro", width=15, command=self.devolver_libro).grid(row=0, column=1, padx=5)
+        ttk.Button(frame_botones, text=" + Prestar libro", style="Modern.TButton", command=self.prestar_libro).grid(row=0, column=0, padx=5)
 
+        ttk.Button(frame_botones, text=" - Devolver libro", style="Modern.TButton", command=self.devolver_libro).grid(row=0, column=1, padx=5)
         self.actualizar_lista()
 
     # ==========================================================
@@ -93,7 +120,7 @@ class BibliotecaApp:
         nombre = self.nombre_usuario.get().strip()
         usuario_id = self.id_usuario.get().strip()
         if not nombre or not usuario_id:
-            messagebox.showwarning("Campos vacíos", "Debe ingresar nombre e ID del usuario.")
+            messagebox.showwarning("Campos vac铆os", "Debe ingresar nombre e ID del usuario.")
             return
         nuevo_usuario = Usuario(nombre, usuario_id)
         self.biblioteca.registrar_usuario(nuevo_usuario)
@@ -118,7 +145,7 @@ class BibliotecaApp:
             self.titulo_entry.delete(0, tk.END)
             self.autor_entry.delete(0, tk.END)
         else:
-            messagebox.showwarning("Campos vacíos", "Debe ingresar título y autor.")
+            messagebox.showwarning("Campos vac铆os", "Debe ingresar t铆tulo y autor.")
 
     def actualizar_lista(self):
         self.lista_libros.delete(0, tk.END)
