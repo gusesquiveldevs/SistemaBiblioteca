@@ -1,17 +1,15 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, Label, PhotoImage
 from modelos import Biblioteca, Libro, Usuario
-#from modelos import  Libro, Usuario
-#from logicatxt import Biblioteca
-# ==========================================================
-# INTERFAZ GRÁFICA (Tkinter)
-# ==========================================================
+
+
 class BibliotecaApp:
     def __init__(self, root):
         self.biblioteca = Biblioteca()
         self.root = root
         self.root.title("📚 Biblioteca - Sistema de Gestión")
-        self.root.geometry("500x900")
+        self.root.geometry("800x900")
+        self.root.config(bg= "#C84444")
 
         # ==========================================================
         # Título principal
@@ -24,17 +22,17 @@ class BibliotecaApp:
         frame_usuario = tk.LabelFrame(root, text="Registro de usuario", padx=10, pady=10)
         frame_usuario.pack(fill="x", padx=10, pady=5)
 
-        tk.Label(frame_usuario, text="Nombre:").grid(row=0, column=0)
-        self.nombre_usuario = tk.Entry(frame_usuario, width=20)
+        tk.Label(frame_usuario, text="Nombre:", bg= "#f7d3d3").grid(row=0, column=0)
+        self.nombre_usuario = tk.Entry(frame_usuario, width=20)      
         self.nombre_usuario.grid(row=0, column=1, padx=10)
 
-        tk.Label(frame_usuario, text="ID:").grid(row=0, column=2)
+        tk.Label(frame_usuario, text="ID:", bg= "#f7d3d3").grid(row=0, column=2)
         self.id_usuario = tk.Entry(frame_usuario, width=10)
         self.id_usuario.grid(row=0, column=3, padx=5)
 
         tk.Button(frame_usuario, text="Registrar", command=self.registrar_usuario).grid(row=0, column=5, padx=5)
 
-        tk.Label(frame_usuario, text="Usuario activo:").grid(row=1, column=0, pady=10)
+        tk.Label(frame_usuario, text="Usuario activo:",bg= "#f7d3d3").grid(row=1, column=0, pady=10)
         self.combo_usuarios = ttk.Combobox(frame_usuario, state="readonly", width=20)
         self.combo_usuarios.grid(row=1, column=1, columnspan=3, pady=10, sticky="w")
         
@@ -46,11 +44,11 @@ class BibliotecaApp:
         frame_libro = tk.LabelFrame(root, text="Agregar libro", padx=10, pady=10)
         frame_libro.pack(fill="x", padx=10, pady=5)
 
-        tk.Label(frame_libro, text="Título:").grid(row=0, column=0)
+        tk.Label(frame_libro, text="Título:",bg= "#f7d3d3").grid(row=0, column=0)
         self.titulo_entry = tk.Entry(frame_libro, width=30)
         self.titulo_entry.grid(row=0, column=1, padx=5)
 
-        tk.Label(frame_libro, text="Autor:").grid(row=1, column=0)
+        tk.Label(frame_libro, text="Autor:", bg= "#f7d3d3").grid(row=1, column=0)
         self.autor_entry = tk.Entry(frame_libro, width=30)
         self.autor_entry.grid(row=1, column=1, padx=5)
 
@@ -89,7 +87,7 @@ class BibliotecaApp:
     # FUNCIONES DE INTERFAZ
     # ==========================================================
     def Actualizar_prestados_usuario(self):
-        self.actualizar_prestados()
+            self.actualizar_prestados()
         
     def registrar_usuario(self):
         nombre = self.nombre_usuario.get().strip()
