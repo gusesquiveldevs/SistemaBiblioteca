@@ -7,7 +7,7 @@ class BibliotecaApp:
     def __init__(self, root):
         self.biblioteca = Biblioteca()
         self.root = root
-        self.root.title("馃摎 Biblioteca - Sistema de Gesti贸n")
+        self.root.title("📚 Biblioteca - Sistema de Gestión")
         self.root.geometry("600x700")
         self.root.config(bg= "#C84444")
 
@@ -37,12 +37,12 @@ class BibliotecaApp:
         style.configure("Modern.TLabel", background="#F8D9D9", font=("Arial", 11))
 
         # ==========================================================
-        # T铆tulo principal
+        # Título principal
         # ==========================================================
         tk.Label(root, text="Sistema de Biblioteca", font=("Arial", 30, "bold")).pack(pady=10)
 
         # ==========================================================FS
-        # Secci贸n: Registro de usuarios
+        # Sección: Registro de usuarios
         # ==========================================================
         frame_usuario = tk.LabelFrame(root, text="Registro de usuario", padx=10, pady=10)
         frame_usuario.pack(fill="x", padx=10, pady=5)
@@ -65,12 +65,12 @@ class BibliotecaApp:
         ttk.Button(frame_usuario, text="Ver prestados", style="Modern.TButton", command=self.Actualizar_prestados_usuario).grid(row=3, column=1, padx=5)
 
         # ==========================================================
-        # Secci贸n: Agregar libros
+        # Sección: Agregar libros
         # ==========================================================
         frame_libro = tk.LabelFrame(root, text="Agregar libro", padx=10, pady=10)
         frame_libro.pack(fill="x", padx=10, pady=5)
 
-        tk.Label(frame_libro, text="T铆tulo:",bg= "#f7d3d3").grid(row=0, column=0)
+        tk.Label(frame_libro, text="Título:",bg= "#f7d3d3").grid(row=0, column=0)
         self.titulo_entry = tk.Entry(frame_libro, width=30)
         self.titulo_entry.grid(row=0, column=1, padx=5)
 
@@ -82,7 +82,7 @@ class BibliotecaApp:
 
 
         # ==========================================================
-        # Secci贸n: Lista de libros
+        # Sección: Lista de libros
         # ==========================================================
         frame_lista = tk.LabelFrame(root, text="Libros disponibles", padx=10, pady=10)
         frame_lista.pack(fill="both", expand=True, padx=10, pady=5)
@@ -91,7 +91,7 @@ class BibliotecaApp:
         self.lista_libros.pack(fill="both", expand=True)
 
         # ==========================================================
-        # Secci贸n: Lista de libros prestados
+        # Sección: Lista de libros prestados
         # ==========================================================
         frame_prestados = tk.LabelFrame(root, text="Libros prestados por el usuario seleccionado", padx=10, pady=10)
         frame_prestados.pack(fill="both", expand=True, padx=10, pady=5)
@@ -100,7 +100,7 @@ class BibliotecaApp:
         self.lista_prestados.pack(fill="both", expand=True)
 
         # ==========================================================
-        # Botones de acci贸n
+        # Botones de acción
         # ==========================================================
         frame_botones = tk.Frame(root)
         frame_botones.pack(pady=10)
@@ -110,6 +110,66 @@ class BibliotecaApp:
         ttk.Button(frame_botones, text=" - Devolver libro", style="Modern.TButton", command=self.devolver_libro).grid(row=0, column=1, padx=5)
         self.actualizar_lista()
 
+    	# ==========================================================
+        # Datos hardcodeados
+        # ==========================================================
+        # Usuarios iniciales
+        u1 = Usuario("Juan Perez", "101")
+        u2 = Usuario("Ana Gomez", "102")
+        u3 = Usuario("Carlos Ruiz", "103")
+
+        self.biblioteca.registrar_usuario(u1)
+        self.biblioteca.registrar_usuario(u2)
+        self.biblioteca.registrar_usuario(u3)
+
+        # Libros iniciales
+        l1 = Libro("El Principito", "Antoine de Saint-Exupéry")
+        l2 = Libro("1984", "George Orwell")
+        l3 = Libro("Cien Años de Soledad", "Gabriel García Márquez")
+        l4  = Libro("Don Quijote de la Mancha", "Miguel de Cervantes")
+        l5  = Libro("La Sombra del Viento", "Carlos Ruiz Zafón")
+        l6  = Libro("Fahrenheit 451", "Ray Bradbury")
+        l7  = Libro("Orgullo y Prejuicio", "Jane Austen")
+        l8  = Libro("Crimen y Castigo", "Fiódor Dostoyevski")
+        l9  = Libro("El Hobbit", "J. R. R. Tolkien")
+        l10 = Libro("El Alquimista", "Paulo Coelho")
+        l11 = Libro("Matar a un Ruiseñor", "Harper Lee")
+        l12 = Libro("El Señor de las Moscas", "William Golding")
+        l13 = Libro("Drácula", "Bram Stoker")
+        l14 = Libro("Frankenstein", "Mary Shelley")
+        l15 = Libro("El Gran Gatsby", "F. Scott Fitzgerald")
+        l16 = Libro("La Metamorfosis", "Franz Kafka")
+        l17 = Libro("Los Juegos del Hambre", "Suzanne Collins")
+        l18 = Libro("El Código Da Vinci", "Dan Brown")
+        l19 = Libro("It", "Stephen King")
+        l20 = Libro("El Viejo y el Mar", "Ernest Hemingway")
+
+        self.biblioteca.agregar_libro(l1)
+        self.biblioteca.agregar_libro(l2)
+        self.biblioteca.agregar_libro(l3)
+        self.biblioteca.agregar_libro(l4)
+        self.biblioteca.agregar_libro(l5)
+        self.biblioteca.agregar_libro(l6)
+        self.biblioteca.agregar_libro(l7)
+        self.biblioteca.agregar_libro(l8)
+        self.biblioteca.agregar_libro(l9)
+        self.biblioteca.agregar_libro(l10)
+        self.biblioteca.agregar_libro(l11)
+        self.biblioteca.agregar_libro(l12)
+        self.biblioteca.agregar_libro(l13)
+        self.biblioteca.agregar_libro(l14)
+        self.biblioteca.agregar_libro(l15)
+        self.biblioteca.agregar_libro(l16)
+        self.biblioteca.agregar_libro(l17)
+        self.biblioteca.agregar_libro(l18)  
+        self.biblioteca.agregar_libro(l19)
+        self.biblioteca.agregar_libro(l20)
+        
+        # Actualizamos listas en la interfaz
+        self.actualizar_usuarios()
+        self.actualizar_lista()    
+
+        
     # ==========================================================
     # FUNCIONES DE INTERFAZ
     # ==========================================================
@@ -120,7 +180,7 @@ class BibliotecaApp:
         nombre = self.nombre_usuario.get().strip()
         usuario_id = self.id_usuario.get().strip()
         if not nombre or not usuario_id:
-            messagebox.showwarning("Campos vac铆os", "Debe ingresar nombre e ID del usuario.")
+            messagebox.showwarning("Campos vacíos", "Debe ingresar nombre e ID del usuario.")
             return
         nuevo_usuario = Usuario(nombre, usuario_id)
         self.biblioteca.registrar_usuario(nuevo_usuario)
@@ -145,7 +205,7 @@ class BibliotecaApp:
             self.titulo_entry.delete(0, tk.END)
             self.autor_entry.delete(0, tk.END)
         else:
-            messagebox.showwarning("Campos vac铆os", "Debe ingresar t铆tulo y autor.")
+            messagebox.showwarning("Campos vacíos", "Debe ingresar título y autor.")
 
     def actualizar_lista(self):
         self.lista_libros.delete(0, tk.END)
