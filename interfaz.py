@@ -8,7 +8,7 @@ class BibliotecaApp:
         self.biblioteca = Biblioteca()
         self.root = root
         self.root.title("📚 Biblioteca - Sistema de Gestión")
-        self.root.geometry("600x700")
+        self.root.geometry("600x750")
         self.root.config(bg= "#C84444")
 
         # ==========================================================
@@ -39,7 +39,7 @@ class BibliotecaApp:
         # ==========================================================
         # Título principal
         # ==========================================================
-        tk.Label(root, text="Sistema de Biblioteca", font=("Arial", 30, "bold")).pack(pady=10)
+        tk.Label(root, text="Sistema de Biblioteca", font=("Arial", 30, "bold"), bg="#C84444", fg="white").pack(pady=10)
 
         # ==========================================================FS
         # Sección: Registro de usuarios
@@ -47,18 +47,18 @@ class BibliotecaApp:
         frame_usuario = tk.LabelFrame(root, text="Registro de usuario", padx=10, pady=10)
         frame_usuario.pack(fill="x", padx=10, pady=5)
 
-        tk.Label(frame_usuario, text="Nombre:", bg= "#f7d3d3").grid(row=0, column=0)
+        tk.Label(frame_usuario, text="Nombre:", bg= "#f7d3d3", font=("Arial", 12)).grid(row=0, column=0)
         self.nombre_usuario = tk.Entry(frame_usuario, width=20)      
         self.nombre_usuario.grid(row=0, column=1, padx=10)
 
-        tk.Label(frame_usuario, text="ID:", bg= "#f7d3d3").grid(row=0, column=2)
+        tk.Label(frame_usuario, text="ID:", bg= "#f7d3d3", font=("Arial", 12)).grid(row=0, column=2)
         self.id_usuario = tk.Entry(frame_usuario, width=10)
         self.id_usuario.grid(row=0, column=3, padx=5)
 
         ttk.Button(frame_usuario, text="Registrar", style="Modern.TButton", command=self.registrar_usuario).grid(row=0, column=5, padx=5)
 
 
-        tk.Label(frame_usuario, text="Usuario activo:",bg= "#f7d3d3").grid(row=1, column=0, pady=10)
+        tk.Label(frame_usuario, text="Usuario activo:",bg= "#f7d3d3", font=("Arial", 12)).grid(row=1, column=0, pady=10)
         self.combo_usuarios = ttk.Combobox(frame_usuario, state="readonly", width=20)
         self.combo_usuarios.grid(row=1, column=1, columnspan=3, pady=10, sticky="w")
         
@@ -70,11 +70,11 @@ class BibliotecaApp:
         frame_libro = tk.LabelFrame(root, text="Agregar libro", padx=10, pady=10)
         frame_libro.pack(fill="x", padx=10, pady=5)
 
-        tk.Label(frame_libro, text="Título:",bg= "#f7d3d3").grid(row=0, column=0)
+        tk.Label(frame_libro, text="Título:",bg= "#f7d3d3", font=("Arial", 12)).grid(row=0, column=0)
         self.titulo_entry = tk.Entry(frame_libro, width=30)
         self.titulo_entry.grid(row=0, column=1, padx=5)
 
-        tk.Label(frame_libro, text="Autor:", bg= "#f7d3d3").grid(row=1, column=0)
+        tk.Label(frame_libro, text="Autor:", bg= "#f7d3d3", font=("Arial", 12)).grid(row=1, column=0)
         self.autor_entry = tk.Entry(frame_libro, width=30)
         self.autor_entry.grid(row=1, column=1, padx=5)
 
@@ -261,3 +261,11 @@ class BibliotecaApp:
         messagebox.showinfo("Resultado", msg)
         self.actualizar_lista()
         self.actualizar_prestados()
+    def validar_id(self, texto):
+        if texto.isdigit() or texto == "":
+            return True
+        else:
+            messagebox.showwarning("ID inválido", "Solo se permiten números en el ID de usuario.")
+        return False
+    
+# ==========================================================fin del archivo================================================ #

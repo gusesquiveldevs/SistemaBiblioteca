@@ -36,7 +36,7 @@ class Usuario:
         if libro.disponible:
             libro.disponible = False
             self.libros_prestados.append(libro)
-            return f"✅ {self.nombre} ha prestado el libro '{libro.titulo}'."
+            return f"✅  Se ha prestado el libro '{libro.titulo}' al usuario '{self.nombre.upper()}'."
         else:
             return f"❌ El libro '{libro.titulo}' no está disponible."
 
@@ -47,7 +47,7 @@ class Usuario:
             self.libros_prestados.remove(libro)
             return f"📗 {self.nombre} ha devuelto el libro '{libro.titulo}'."
         else:
-            return f"⚠️ {self.nombre} no tiene el libro '{libro.titulo}' prestado."
+            return f"⚠️ El libro '{libro.titulo}' ha sido prestado al usuario '{self.nombre.upper()}' ."
 
     def to_dict(self):
         return {
@@ -66,3 +66,5 @@ class Biblioteca:
 
     def registrar_usuario(self, usuario):
          self.usuarios.append(usuario)
+
+# ==========================================================fin del archivo================================================ #
