@@ -52,7 +52,8 @@ class BibliotecaApp:
         self.nombre_usuario.grid(row=0, column=1, padx=10)
 
         tk.Label(frame_usuario, text="ID:", bg= "#f7d3d3", font=("Arial", 12)).grid(row=0, column=2)
-        self.id_usuario = tk.Entry(frame_usuario, width=10)
+        validar_cmd = (self.root.register(self.validar_id), "%P")
+        self.id_usuario = tk.Entry(frame_usuario, width=10, validate="key", validatecommand=validar_cmd)
         self.id_usuario.grid(row=0, column=3, padx=5)
 
         ttk.Button(frame_usuario, text="Registrar", style="Modern.TButton", command=self.registrar_usuario).grid(row=0, column=5, padx=5)
